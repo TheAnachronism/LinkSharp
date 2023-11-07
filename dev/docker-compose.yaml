@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    hostname: linksharp-postgres
+    image: postgres
+    networks:
+      - linksharp-dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=Linksharp
+      - POSTGRES_PASSWORD=Linksharp
+    volumes:
+      - linksharp-database:/var/lib/postgresql/
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL:  linksharp-dev@test.com
+      PGADMIN_DEFAULT_PASSWORD: linksharp-dev
+    ports:
+      - "8889:80"
+    networks:
+      - linksharp-dev
+    volumes:
+      - linksharp_pgadmin_config:/var/lib/pgadmin
+
+networks:
+  linksharp-dev:
+
+volumes:
+  linksharp-database:
+  linksharp_pgadmin_config:
