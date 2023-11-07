@@ -1,0 +1,14 @@
+﻿@import "overrides";
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "blazor";
+
+.navbar {
+  background-color: $navigation-gray;
+}
+
+.disabled-area {
+  pointer-events: none;
+  opacity: 0.5%;
+}

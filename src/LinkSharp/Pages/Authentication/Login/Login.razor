@@ -1,0 +1,25 @@
+﻿@page "/login"
+
+<div class="container">
+    <EditForm Model="_model" OnValidSubmit="LoginAsync">
+        <DataAnnotationsValidator/>
+        
+        <div>
+            <HxInputText ValidationMessageMode="ValidationMessageMode.Tooltip" @bind-Value="_model.UsernameOrEmail" Label="Username or Email Address" Placeholder="example@example.com"/>
+        </div>
+        <div>
+            <HxInputText ValidationMessageMode="ValidationMessageMode.Tooltip" @bind-Value="_model.Password" Label="Password" Placeholder="Password" Type="InputType.Password"/>
+        </div>
+        
+        @if (_isUnauthorized)
+        {
+            <HxAlert Color="ThemeColor.Danger">
+                Login failed! Invalid credentials or user does not exist.
+            </HxAlert>
+        }
+        
+        <div>
+            <HxSubmit Color="ThemeColor.Primary" Text="Login"/>
+        </div>
+    </EditForm>
+</div>

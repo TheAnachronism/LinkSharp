@@ -1,0 +1,36 @@
+﻿@page "/register"
+
+<div class="container">
+    <EditForm Model="_model" OnValidSubmit="RegisterAsync">
+        <DataAnnotationsValidator/>
+
+        <div>
+            <HxInputText @bind-Value="_model.Username" Label="Username" Placeholder="Username" ValidationMessageMode="ValidationMessageMode.Tooltip"/>
+        </div>
+        <div>
+            <HxInputText @bind-Value="_model.Email" Label="Email" Placeholder="example@example.com" ValidationMessageMode="ValidationMessageMode.Tooltip" Type="InputType.Email"/>
+        </div>
+        <div>
+            <HxInputText @bind-Value="_model.Password" Label="Password" Placeholder="Password" ValidationMessageMode="ValidationMessageMode.Tooltip" Type="InputType.Password"/>
+        </div>
+        <div>
+            <HxInputText @bind-Value="_model.PasswordConfirm" Label="Confirm Password" Placeholder="Password" ValidationMessageMode="ValidationMessageMode.Tooltip" Type="InputType.Password"/>
+        </div>
+        
+        @if (_errors.Any())
+        {
+            <HxAlert Color="ThemeColor.Danger">
+                <ul>
+                    @foreach (var error in _errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </HxAlert>
+        }
+        
+        <div>
+            <HxSubmit Color="ThemeColor.Primary" Text="Register"/>
+        </div>
+    </EditForm>
+</div>

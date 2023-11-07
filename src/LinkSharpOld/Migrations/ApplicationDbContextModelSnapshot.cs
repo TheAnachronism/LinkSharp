@@ -3,7 +3,6 @@ using System;
 using LinkSharp.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,11 +11,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LinkSharp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231107005450_AddedLinksTagsAndCollections")]
-    partial class AddedLinksTagsAndCollections
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +37,7 @@ namespace LinkSharp.Migrations
                     b.ToTable("CollectionLink");
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.ApplicationUser", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -104,7 +101,7 @@ namespace LinkSharp.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.Collection", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.Collection", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +116,7 @@ namespace LinkSharp.Migrations
                     b.ToTable("Collections");
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.Link", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.Link", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,7 +140,7 @@ namespace LinkSharp.Migrations
                     b.ToTable("Links");
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.Tag", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -307,22 +304,22 @@ namespace LinkSharp.Migrations
 
             modelBuilder.Entity("CollectionLink", b =>
                 {
-                    b.HasOne("LinkSharp.Database.Collection", null)
+                    b.HasOne("LinkSharpOld.Database.Collection", null)
                         .WithMany()
                         .HasForeignKey("CollectionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LinkSharp.Database.Link", null)
+                    b.HasOne("LinkSharpOld.Database.Link", null)
                         .WithMany()
                         .HasForeignKey("LinksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.ApplicationUser", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.ApplicationUser", b =>
                 {
-                    b.OwnsMany("LinkSharp.Database.ApplicationUserCollectionAccess", "Collections", b1 =>
+                    b.OwnsMany("LinkSharpOld.Database.ApplicationUserCollectionAccess", "Collections", b1 =>
                         {
                             b1.Property<string>("ApplicationUserId")
                                 .HasColumnType("text");
@@ -348,7 +345,7 @@ namespace LinkSharp.Migrations
                             b1.WithOwner("ApplicationUser")
                                 .HasForeignKey("ApplicationUserId");
 
-                            b1.HasOne("LinkSharp.Database.Collection", "Collection")
+                            b1.HasOne("LinkSharpOld.Database.Collection", "Collection")
                                 .WithMany()
                                 .HasForeignKey("CollectionId")
                                 .OnDelete(DeleteBehavior.Cascade)
@@ -362,9 +359,9 @@ namespace LinkSharp.Migrations
                     b.Navigation("Collections");
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.Collection", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.Collection", b =>
                 {
-                    b.OwnsMany("LinkSharp.Database.ApplicationUserCollectionAccess", "UserAccesses", b1 =>
+                    b.OwnsMany("LinkSharpOld.Database.ApplicationUserCollectionAccess", "UserAccesses", b1 =>
                         {
                             b1.Property<Guid>("CollectionId")
                                 .HasColumnType("uuid");
@@ -388,7 +385,7 @@ namespace LinkSharp.Migrations
 
                             b1.ToTable("Collections_UserAccesses");
 
-                            b1.HasOne("LinkSharp.Database.ApplicationUser", "ApplicationUser")
+                            b1.HasOne("LinkSharpOld.Database.ApplicationUser", "ApplicationUser")
                                 .WithMany()
                                 .HasForeignKey("ApplicationUserId")
                                 .OnDelete(DeleteBehavior.Cascade)
@@ -405,9 +402,9 @@ namespace LinkSharp.Migrations
                     b.Navigation("UserAccesses");
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.Link", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.Link", b =>
                 {
-                    b.HasOne("LinkSharp.Database.ApplicationUser", "Creator")
+                    b.HasOne("LinkSharpOld.Database.ApplicationUser", "Creator")
                         .WithMany("Links")
                         .HasForeignKey("CreatorId");
 
@@ -416,13 +413,13 @@ namespace LinkSharp.Migrations
 
             modelBuilder.Entity("LinkTag", b =>
                 {
-                    b.HasOne("LinkSharp.Database.Link", null)
+                    b.HasOne("LinkSharpOld.Database.Link", null)
                         .WithMany()
                         .HasForeignKey("LinksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LinkSharp.Database.Tag", null)
+                    b.HasOne("LinkSharpOld.Database.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -440,7 +437,7 @@ namespace LinkSharp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("LinkSharp.Database.ApplicationUser", null)
+                    b.HasOne("LinkSharpOld.Database.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,7 +446,7 @@ namespace LinkSharp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("LinkSharp.Database.ApplicationUser", null)
+                    b.HasOne("LinkSharpOld.Database.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +461,7 @@ namespace LinkSharp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LinkSharp.Database.ApplicationUser", null)
+                    b.HasOne("LinkSharpOld.Database.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -473,14 +470,14 @@ namespace LinkSharp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("LinkSharp.Database.ApplicationUser", null)
+                    b.HasOne("LinkSharpOld.Database.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LinkSharp.Database.ApplicationUser", b =>
+            modelBuilder.Entity("LinkSharpOld.Database.ApplicationUser", b =>
                 {
                     b.Navigation("Links");
                 });

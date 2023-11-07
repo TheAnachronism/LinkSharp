@@ -1,0 +1,11 @@
+﻿@import 'variables';
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$body-bg-dark: $background-gray;
+
+$input-bg: $gray-800;
+$input-focus-bg: $input-bg;
+
+$navbar-light-active-color: $gray-500;

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4DF60F09-4455-485D-8D22-A4486B72A08D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkSharp", "src\LinkSharp\LinkSharp.csproj", "{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkSharpOld", "src\LinkSharpOld\LinkSharpOld.csproj", "{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{3BD89976-5F3F-4737-822D-B4508491B179}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{9B030B70-F87
 		dev\docker-compose.yaml = dev\docker-compose.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkSharp", "src\LinkSharp\LinkSharp.csproj", "{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +25,16 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E} = {4DF60F09-4455-485D-8D22-A4486B72A08D}
 		{9B030B70-F87F-4EE3-B92F-E62822D3A1FB} = {3BD89976-5F3F-4737-822D-B4508491B179}
+		{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF} = {4DF60F09-4455-485D-8D22-A4486B72A08D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCFD51BD-9CB8-4AFE-B664-E6D6F0E2442E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B18A1D-EBC8-481B-9BC4-51C2BABCEBBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

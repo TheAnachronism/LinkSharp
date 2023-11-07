@@ -1,10 +1,10 @@
-using Havit.Blazor.Components.Web;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using LinkSharp.Configuration;
 using LinkSharp.Database;
-using MediatR;
 using Serilog;
 
-internal class Program
+public class Program
 {
     public static void Main(string[] args)
     {
@@ -22,41 +22,35 @@ internal class Program
         try
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             builder.Logging.ClearProviders();
             builder.Logging.AddSerilog();
 
-            builder.Services.AddHxServices();
-            
-            builder.Services.AddMediatR(typeof(Program).Assembly);
-
             builder.Services.AddLinkSharpIdentity(builder.Configuration);
 
+            builder.Services.AddAuthorization();
             builder.Services.AddAuthentication()
                 .ConfigureOpenIdConnectAuth(builder.Configuration);
-            builder.Services.AddAuthorization();
-        
-            builder.Services.AddRazorPages();
-            builder.Services.AddServerSideBlazor();
+            
+            builder.Services.AddFastEndpoints();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            if (!app.Environment.IsDevelopment())
+            if (app.Environment.IsDevelopment())
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseStaticFiles();
 
-            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
+            app.UseFastEndpoints();
+            app.UseSwaggerGen();
 
             await app.RunAsync();
         }
